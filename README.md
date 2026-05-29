@@ -39,9 +39,9 @@ pip install numpy opencv-python matplotlib numba scipy polars
 ```
 Additionally, to replicate the experiments in the simulation qucs/ folder, you will require:
 
-Qucs-S (Quite Universal Circuit Simulator with SPICE).
+`Qucs-S` (Quite Universal Circuit Simulator with SPICE).
 
-Ngspice configured as the simulation engine in Qucs-S.
+`Ngspice` configured as the simulation engine in `Qucs-S`.
 
 🚀 How to Reproduce the Experiments
 A. Electrical Simulation
@@ -49,27 +49,28 @@ Navigate to electrical simulation/simulation python/.
 
 Place your test image in the input/ folder.
 
-Run python Red.py. The edge maps and .dat.ngspice data will be saved in the output/ folder.
+Run python `Red.py`. The edge maps and `.dat.ngspice data` will be saved in the output/ folder.
 
-Run python plot2XM.py in the response folder to generate the transient response plots.
+Run python `plot2XM.py` in the response folder to generate the transient response plots.
 
 B. BSDS500 Benchmark
 Navigate to the image/ folder.
 
 Ensure that the output, output_canny, and ground_truth_img folders contain the required data.
 
-Run python benchmark.py.
+Run python `benchmark.py`.
 
 The script will generate a Precision-Recall scatter plot comparing the ODS, OIS, and AP of our memristive network against Canny and human annotations.
 
 C. Video Persistence
 To test the persistence effect, navigate to video/with persistance/.
 
-Run python Grid-M.py. The script will decompose the input video into temporal frames, mathematically process the matrix, and reconstruct the video with the retinal effect.
+Run python `Grid-M.py`. The script will decompose the input video into temporal frames, mathematically process the matrix, and reconstruct the video with the retinal effect.
 
 For the comparative analysis, run python persis.py inside quantitative persistance response/ to visualize the difference in activity and memory in a plot.
 
 📜 Authors and Citation
+
 Project developed at the National Institute for Astrophysics, Optics and Electronics (INAOE), Mexico.
 
 If you find this repository or the mathematical model useful in your research, please consider citing our work:
