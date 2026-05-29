@@ -67,7 +67,7 @@ To test the persistence effect, navigate to video/with persistance/.
 
 Run python `Grid-M.py`. The script will decompose the input video into temporal frames, mathematically process the matrix, and reconstruct the video with the retinal effect.
 
-For the comparative analysis, run python persis.py inside quantitative persistance response/ to visualize the difference in activity and memory in a plot.
+For the comparative analysis, run python `persis.py` inside quantitative persistance response/ to visualize the difference in activity and memory in a plot.
 
 📜 Authors and Citation
 
