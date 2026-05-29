@@ -32,11 +32,11 @@ Demonstrates the grid's intrinsic neuromorphic response when processing continuo
 
 ## 🛠️ Requirements and Installation
 
-To run the scripts in this repository, you will need **Python 3.8+** and the following libraries[cite: 2, 3, 4]:
+To run the scripts in this repository, you will need **Python 3.8+** and the following libraries:
 
 ```bash
 pip install numpy opencv-python matplotlib numba scipy polars
-
+```
 Additionally, to replicate the experiments in the simulation qucs/ folder, you will require:
 
 Qucs-S (Quite Universal Circuit Simulator with SPICE).
