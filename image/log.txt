@@ -1,0 +1,9 @@
+Evaluating 200 images against 3 human annotators...
+
+--- BENCHMARK RESULTS ---
+Method       |  ODS (F1)  |  OIS (F1)  |    AP      |
+-----------------------------------------------------
+Memristive   |   0.5824   |   0.5457   |   0.5277   |
+Canny OpenCV |   0.4781   |   0.4600   |   0.4242   |
+
+Plot saved successfully as 'PR_Benchmark_Evaluation.png'

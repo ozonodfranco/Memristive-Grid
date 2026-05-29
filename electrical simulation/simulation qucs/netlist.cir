@@ -1,0 +1,69 @@
+* Qucs 26.1.1  D:/Memristive-grid-video-processing/electrical simulation/simulation qucs/Grid3x3.sch
+.INCLUDE "C:/Program Files/Qucs-S/share/qucs-s/xspice_cmlib/include/ngspice_mathfunc.inc"
+.INCLUDE "D:/Memristive-grid-video-processing/electrical simulation/simulation qucs/Mn.lib"
+.INCLUDE "D:/Memristive-grid-video-processing/electrical simulation/simulation qucs/Mp.lib"
+R1 _net0 N11  50 tc1=0.0 tc2=0.0 
+R2 _net1 N12  50 tc1=0.0 tc2=0.0 
+R3 _net2 N13  50 tc1=0.0 tc2=0.0 
+R4 _net3 N21  50 tc1=0.0 tc2=0.0 
+R5 _net4 N22  50 tc1=0.0 tc2=0.0 
+R6 _net5 N23  50 tc1=0.0 tc2=0.0 
+R7 _net6 N31  50 tc1=0.0 tc2=0.0 
+R8 _net7 N32  50 tc1=0.0 tc2=0.0 
+R9 _net8 N33  50 tc1=0.0 tc2=0.0 
+V1 _net4  0 PWL(0 0 1p 0)
+V2 _net3  0 PWL(0 0 1p 0)
+V3 _net6  0 PWL(0 0 1p 1)
+V4 _net7  0 PWL(0 0 1p 1)
+V5 _net8  0 PWL(0 0 1p 1)
+V6 _net5  0 PWL(0 0 1p 0)
+V7 _net0  0 PWL(0 0 1p 0)
+V8 _net1  0 PWL(0 0 1p 0)
+V9 _net2  0 PWL(0 0 1p 0)
+XX13  N11 _net9 HPM_FLUX_INV 
+XX1  _net9 N12 HPM_FLUX 
+XX25  N12 _net10 HPM_FLUX_INV 
+XX26  _net10 N13 HPM_FLUX 
+XX27  N31 _net11 HPM_FLUX_INV 
+XX28  _net11 N32 HPM_FLUX 
+XX29  N32 _net12 HPM_FLUX_INV 
+XX30  _net12 N33 HPM_FLUX 
+XX31  N22 _net13 HPM_FLUX_INV 
+XX32  _net13 N23 HPM_FLUX 
+XX33  N21 Ne HPM_FLUX_INV 
+XX34  Nf N22 HPM_FLUX 
+XX35  N11 _net14 HPM_FLUX_INV 
+XX36  _net14 N21 HPM_FLUX 
+XX37  N21 _net15 HPM_FLUX_INV 
+XX38  _net15 N31 HPM_FLUX 
+XX39  N22 Nc HPM_FLUX_INV 
+XX40  Nd N32 HPM_FLUX 
+XX41  N23 _net16 HPM_FLUX_INV 
+XX42  _net16 N33 HPM_FLUX 
+XX43  N13 _net17 HPM_FLUX_INV 
+XX44  _net17 N23 HPM_FLUX 
+XX45  N12 Na HPM_FLUX_INV 
+XX46  Nb N22 HPM_FLUX 
+VIMp11 Nc Nd DC 0
+VIMq10 Ne Nf DC 0
+VIMp01 Na Nb DC 0
+
+.control
+
+tran 0.000100559 0.018 0 
+let Vs12 = N12
+let Vs22 = N22
+let Vs32 = N32
+let VMp01 = abs(N12-N22)
+let VMp11 = abs(N22-N32)
+let VMq10 = abs(N21-N22)
+let Mp01 = (VMp01) / (abs(i(VIMp01))+ 1e-16)
+let Mp11 = (VMp11) / (abs(i(VIMp11))+ 1e-16)
+let Mq10 = (VMq10+1e-12) / (abs(i(VIMq10))+ 1e-12)
+write spice4qucs.tr1.plot v(N11) v(N12) v(N13) v(N21) v(N22) v(N23) v(N31) v(N32) v(N33) v(Na) v(Nb) v(Nc) v(Nd) v(Ne) v(Nf) i(VIMp01) i(VIMp11) i(VIMq10) Vs12 Vs22 Vs32 VMp01 VMp11 VMq10 Mp01 Mp11 Mq10
+destroy all
+reset
+
+exit
+.endc
+.END

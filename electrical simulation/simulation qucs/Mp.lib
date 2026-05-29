@@ -1,0 +1,20 @@
+.SUBCKT HPM_FLUX N+ N-
+
+.PARAM XO=0.9999
+.PARAM MU=10F
+.PARAM ETA=1
+.PARAM ROFF=1100
+.PARAM RON=1
+.PARAM DELTA=10N
+.PARAM KAPPA='MU*RON/((DELTA*DELTA)*(RON*XO + ROFF*(1 - XO)))'
+
+* INTEGRADOR DE FLUJO EXACTO (Clon de la topologia uSimmics)
+* Convierte el voltaje a corriente y lo integra en un capacitor de 1F (Tau = 1s)
+BINT 0 FLUX I='V(N+, N-)'
+CINT FLUX 0 1
+RINT FLUX 0 1G
+
+* RESISTENCIA DEPENDIENTE DEL FLUJO (RMEM)
+* Mapeo 1:1 de los denominadores de tu EDD de uSimmics
+RMEM N+ N- R='(V(FLUX)>0) ? (RON*ROFF*(1/ROFF + (1/RON - 1/ROFF)*((1 - XO)*EXP(-4*KAPPA*V(FLUX)) - ((1 - XO)*(1 - XO))*(EXP(-8*KAPPA*V(FLUX)) - EXP(-4*KAPPA*V(FLUX)))))) : (RON*ROFF*(1/RON + (1/ROFF - 1/RON)*(XO*EXP(4*KAPPA*V(FLUX)) - (XO*XO)*(EXP(8*KAPPA*V(FLUX)) - EXP(4*KAPPA*V(FLUX))))))'
+.ENDS
